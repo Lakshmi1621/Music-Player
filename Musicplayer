@@ -1,0 +1,60 @@
+package MusicPlayer;
+import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Musicplayer {
+	private List<Song>songs;
+	private Song currentSong;
+    private boolean isPlaying;
+    private boolean isPaused;
+    public Musicplayer() {
+    	songs = new ArrayList<>();
+        isPlaying = false;
+        isPaused = false;
+    }
+    public void addSong(Song song) {
+        songs.add(song);
+        System.out.println("Added: " + song);
+    }
+    public void displaySongsByCategory(Category category) {
+        System.out.println("Songs in " + category.getCategory() + " category:");
+        for (Song song : songs) {
+            if (song.getCategory().equals(category.getCategory())) {
+                System.out.println(song);
+            }
+        }
+    }
+    public void playSong(Song song) {
+        if (isPlaying) {
+            System.out.println("A song is already playing.");
+            return;
+        }
+        currentSong = song;
+        isPlaying = true;
+        isPaused = false;
+        System.out.println("Playing: " + song.getTitle() + " by " + song.getArtist());
+    }
+    public void pauseSong() {
+        if (isPlaying && !isPaused) {
+            isPaused = true;
+            System.out.println("Paused: " + currentSong.getTitle());
+        } else {
+            System.out.println("No song is playing.");
+        }
+    }
+    public void stopSong() {
+        if (isPlaying) {
+            isPlaying = false;
+            isPaused = false;
+            System.out.println("Stopped: " + currentSong.getTitle());
+        } else {
+            System.out.println("No song is playing.");
+        }
+    }
+    public List<Song> getSongs() {
+        return songs;
+    }
+}
+    
+
